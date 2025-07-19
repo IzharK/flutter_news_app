@@ -2,9 +2,9 @@ name: Flutter CI
 
 on:
   push:
-    branches: [main, develop, "feat/**", "fix/**", "chore/**"]
+    branches: [main, master]
   pull_request:
-    branches: [main, develop]
+    branches: [main, master]
 
 jobs:
   build:
@@ -16,6 +16,8 @@ jobs:
           channel: stable
       - name: Install dependencies
         run: flutter pub get
+      - name: Check formatting
+        run: flutter format --set-exit-if-changed .
       - name: Analyze code
         run: flutter analyze
       - name: Run tests

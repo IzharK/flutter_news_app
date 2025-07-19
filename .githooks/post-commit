@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Auto-push commits to remote after each commit.
+# Skips if no remote or detached HEAD. Handles errors gracefully.
+
+branch=$(git symbolic-ref --quiet --short HEAD) || exit 0
+remote="origin"
+
+if git config --get remote.$remote.url >/dev/null; then
+  echo "[post-commit] Pushing $branch to $remote ..."
+  git push $remote $branch --quiet
+  if [ $? -ne 0 ]; then
+    echo "[post-commit] WARNING: automatic push failed. Please push manually after resolving the issue."
+  fi
+else
+  echo "[post-commit] No '$remote' remote configured; skipping automatic push."
+fi
