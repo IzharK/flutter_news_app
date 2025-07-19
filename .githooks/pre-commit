@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Flutter formatting and static analysis gate
-flutter format --set-exit-if-changed .
+dart format --set-exit-if-changed .
 flutter analyze --fatal-infos
