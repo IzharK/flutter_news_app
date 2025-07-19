@@ -12,8 +12,11 @@ class CategoriesBinding extends Bindings {
     if (!Get.isRegistered<NewsService>()) {
       Get.lazyPut<NewsService>(() => NewsService(), fenix: true);
     }
-    
+
     // Register CategoriesController
-    Get.lazyPut<CategoriesController>(() => CategoriesController(), fenix: true);
+    Get.lazyPut<CategoriesController>(
+      () => CategoriesController(),
+      fenix: true,
+    );
   }
 }

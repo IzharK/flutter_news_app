@@ -59,7 +59,7 @@ class LoadingWidgets {
                 ],
               ),
               const SizedBox(height: 12),
-              
+
               // Image shimmer
               Container(
                 width: double.infinity,
@@ -70,7 +70,7 @@ class LoadingWidgets {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               // Title shimmer
               Container(
                 width: double.infinity,
@@ -90,7 +90,7 @@ class LoadingWidgets {
                 ),
               ),
               const SizedBox(height: 8),
-              
+
               // Description shimmer
               Container(
                 width: double.infinity,
@@ -154,7 +154,7 @@ class LoadingWidgets {
                 ),
               ),
               const SizedBox(width: 12),
-              
+
               // Content shimmer
               Expanded(
                 child: Column(
@@ -183,7 +183,7 @@ class LoadingWidgets {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    
+
                     // Title
                     Container(
                       width: double.infinity,
@@ -203,7 +203,7 @@ class LoadingWidgets {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    
+
                     // Description
                     Container(
                       width: double.infinity,
@@ -237,7 +237,7 @@ class LoadingWidgets {
     return ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) {
-        return compact 
+        return compact
             ? compactNewsArticleShimmer(context)
             : newsArticleShimmer(context);
       },
@@ -255,10 +255,7 @@ class LoadingWidgets {
         children: [
           CircularProgressIndicator(color: color),
           const SizedBox(height: 16),
-          Text(
-            message,
-            style: TextStyle(color: color),
-          ),
+          Text(message, style: TextStyle(color: color)),
         ],
       ),
     );
@@ -278,11 +275,7 @@ class LoadingWidgets {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: 64,
-                color: Theme.of(context).colorScheme.error,
-              ),
+              Icon(icon, size: 64, color: Theme.of(context).colorScheme.error),
               const SizedBox(height: 16),
               Text(
                 'Something went wrong',
@@ -327,13 +320,12 @@ class LoadingWidgets {
               Icon(
                 icon,
                 size: 64,
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.5),
               ),
               const SizedBox(height: 16),
-              Text(
-                message,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+              Text(message, style: Theme.of(context).textTheme.titleLarge),
               if (subtitle != null) ...[
                 const SizedBox(height: 8),
                 Text(
@@ -344,10 +336,7 @@ class LoadingWidgets {
               ],
               if (onAction != null && actionText != null) ...[
                 const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: onAction,
-                  child: Text(actionText),
-                ),
+                ElevatedButton(onPressed: onAction, child: Text(actionText)),
               ],
             ],
           ),
@@ -385,9 +374,10 @@ class _ShimmerWidgetState extends State<_ShimmerWidget>
       duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
-    _animation = Tween<double>(begin: -1.0, end: 2.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _animation = Tween<double>(
+      begin: -1.0,
+      end: 2.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
     _controller.repeat();
   }
 
@@ -399,10 +389,11 @@ class _ShimmerWidgetState extends State<_ShimmerWidget>
 
   @override
   Widget build(BuildContext context) {
-    final baseColor = widget.baseColor ?? 
+    final baseColor =
+        widget.baseColor ??
         Theme.of(context).colorScheme.surfaceContainerHighest;
-    final highlightColor = widget.highlightColor ?? 
-        Theme.of(context).colorScheme.surface;
+    final highlightColor =
+        widget.highlightColor ?? Theme.of(context).colorScheme.surface;
 
     return AnimatedBuilder(
       animation: _animation,
@@ -412,11 +403,7 @@ class _ShimmerWidgetState extends State<_ShimmerWidget>
             return LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [
-                baseColor,
-                highlightColor,
-                baseColor,
-              ],
+              colors: [baseColor, highlightColor, baseColor],
               stops: [
                 _animation.value - 0.3,
                 _animation.value,

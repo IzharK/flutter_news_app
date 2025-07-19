@@ -76,7 +76,8 @@ class AppConfig {
 
   /// Enable/disable analytics
   static bool get enableAnalytics {
-    return environment == AppEnvironment.production && FeatureFlags.enableAnalytics;
+    return environment == AppEnvironment.production &&
+        FeatureFlags.enableAnalytics;
   }
 
   /// Get timeout duration based on environment
@@ -152,11 +153,7 @@ class AppConfig {
 }
 
 /// Application environments
-enum AppEnvironment {
-  development,
-  staging,
-  production,
-}
+enum AppEnvironment { development, staging, production }
 
 /// Extension for AppEnvironment
 extension AppEnvironmentExtension on AppEnvironment {

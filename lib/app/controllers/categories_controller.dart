@@ -63,17 +63,17 @@ class CategoriesController extends GetxController {
     try {
       isLoading.value = true;
       errorMessage.value = '';
-      
+
       final response = await _newsService.getNewsByCategory(
         category: category,
         pageSize: 50,
       );
-      
+
       final articlesData = response['articles'] as List? ?? [];
       articles.value = articlesData
           .map((json) => NewsArticle.fromJson(json as Map<String, dynamic>))
           .toList();
-      
+
       hasInitialData.value = true;
       searchResultsCount.value = articles.length;
     } catch (e) {
@@ -99,18 +99,18 @@ class CategoriesController extends GetxController {
       errorMessage.value = '';
       currentMode.value = 'search';
       searchQuery.value = query;
-      
+
       final response = await _newsService.searchNews(
         query: query,
         pageSize: 50,
         sortBy: 'publishedAt',
       );
-      
+
       final articlesData = response['articles'] as List? ?? [];
       articles.value = articlesData
           .map((json) => NewsArticle.fromJson(json as Map<String, dynamic>))
           .toList();
-      
+
       hasInitialData.value = true;
       searchResultsCount.value = articles.length;
     } catch (e) {
@@ -183,7 +183,8 @@ class CategoriesController extends GetxController {
 
   /// Check if a category is currently selected
   bool isCategorySelected(String category) {
-    return selectedCategory.value == category && currentMode.value == 'category';
+    return selectedCategory.value == category &&
+        currentMode.value == 'category';
   }
 
   /// Get total number of articles

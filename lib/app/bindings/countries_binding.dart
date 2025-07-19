@@ -12,7 +12,7 @@ class CountriesBinding extends Bindings {
     if (!Get.isRegistered<NewsService>()) {
       Get.lazyPut<NewsService>(() => NewsService(), fenix: true);
     }
-    
+
     // Register CountriesController
     Get.lazyPut<CountriesController>(() => CountriesController(), fenix: true);
   }

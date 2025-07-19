@@ -12,7 +12,7 @@ class HomeBinding extends Bindings {
     if (!Get.isRegistered<NewsService>()) {
       Get.lazyPut<NewsService>(() => NewsService(), fenix: true);
     }
-    
+
     // Register HomeController
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
   }
